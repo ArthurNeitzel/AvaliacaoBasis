@@ -49,5 +49,56 @@ public class Aluno {
             inverseJoinColumns= @JoinColumn(name = "ID_DISCIPLINA", referencedColumnName = "ID"))
     private List<Disciplina> disciplinas = new ArrayList<>();
 
+	public void setNome(String nomeAluno) {
+		this.nome = nomeAluno;
+	}
+
+	public void setCpf(String cpfAluno) {
+		this.cpf = cpfAluno;
+	}
+
+	public void setDataNascimento(LocalDate dataAluno) {
+		this.dataNascimento = dataAluno;
+	}
+
+	public void setMatricula(String matriculaAluno) {
+		this.matricula = matriculaAluno;
+		
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+    
+    
+    
 }
 

@@ -30,11 +30,11 @@ public class ProfessorRecurso {
         this.professorServico = professorServico;
     }
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<ProfessorDTO> salvar(@RequestBody ProfessorDTO professorDTO) throws URISyntaxException {
         ProfessorDTO result = professorServico.salvar(professorDTO);
         return ResponseEntity.created(new URI(API_PROFESSORES + result.getId())).body(result);
-    }
+    }*/
 
     @PutMapping
     public ResponseEntity<ProfessorDTO> editar(@RequestBody ProfessorDTO professorDTO) throws URISyntaxException {

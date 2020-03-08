@@ -30,11 +30,11 @@ public class DisciplinaRecurso {
         this.disciplinaServico = disciplinaServico;
     }
 
-    @PostMapping
+   /* @PostMapping
     public ResponseEntity<DisciplinaDTO> salvar(@RequestBody DisciplinaDTO disciplinaDTO) throws URISyntaxException {
         DisciplinaDTO result = disciplinaServico.salvar(disciplinaDTO);
         return ResponseEntity.created(new URI(API_DISCIPLINAS + result.getId())).body(result);
-    }
+    }*/
 
     @PutMapping
     public ResponseEntity<DisciplinaDTO> editar(@RequestBody DisciplinaDTO disciplinaDTO) throws URISyntaxException {
