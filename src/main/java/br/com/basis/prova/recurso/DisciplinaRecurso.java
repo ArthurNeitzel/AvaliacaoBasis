@@ -1,8 +1,6 @@
 package br.com.basis.prova.recurso;
 
-import br.com.basis.prova.dominio.dto.DisciplinaDTO;
-import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
-import br.com.basis.prova.dominio.dto.DisciplinaListagemDTO;
+import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.servico.DisciplinaServico;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,15 +28,15 @@ public class DisciplinaRecurso {
         this.disciplinaServico = disciplinaServico;
     }
 
-   /* @PostMapping
-    public ResponseEntity<DisciplinaDTO> salvar(@RequestBody DisciplinaDTO disciplinaDTO) throws URISyntaxException {
-        DisciplinaDTO result = disciplinaServico.salvar(disciplinaDTO);
+    @PostMapping
+    public ResponseEntity<Disciplina> salvar(@RequestBody Disciplina disciplina) throws URISyntaxException {
+    	Disciplina result = disciplinaServico.salvar(disciplina);
         return ResponseEntity.created(new URI(API_DISCIPLINAS + result.getId())).body(result);
-    }*/
+    }
 
     @PutMapping
-    public ResponseEntity<DisciplinaDTO> editar(@RequestBody DisciplinaDTO disciplinaDTO) throws URISyntaxException {
-        DisciplinaDTO result = disciplinaServico.salvar(disciplinaDTO);
+    public ResponseEntity<Disciplina> editar(@RequestBody Disciplina disciplina) throws URISyntaxException {
+    	Disciplina result = disciplinaServico.salvar(disciplina);
         return ResponseEntity.ok(result);
     }
 
@@ -49,12 +47,12 @@ public class DisciplinaRecurso {
     }
 
     @GetMapping
-    public ResponseEntity<List<DisciplinaListagemDTO>> consultar() {
+    public ResponseEntity<List<Disciplina>> consultar() {
         return ResponseEntity.ok(disciplinaServico.consultar());
     }
 
     @GetMapping("/detalhes/{id}")
-    public ResponseEntity<DisciplinaDetalhadaDTO> detalhar(@PathVariable("id") Integer id) {
+    public ResponseEntity<Disciplina> detalhar(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(disciplinaServico.detalhar(id));
     }
 
