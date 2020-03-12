@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 @Entity
@@ -25,15 +28,20 @@ public class Professor {
     @Column(name = "ID", nullable = false)
     private Integer id;
 
+	@NotNull
 	@Column(name = "NOME", nullable = false)
     private String nome;
 
+	@NotNull
+	@Size(max = 6)
 	@Column(name = "MATRICULA", nullable = false)
     private String matricula;
 
+	@NotNull
 	@Column(name = "AREA_ATUACAO", nullable = false)
     private String area;
 
+	@NotNull
 	@Column(name = "DATA_NASCIMENTO", nullable = false)
     private LocalDate dataNascimento;
 

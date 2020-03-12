@@ -20,11 +20,11 @@ public class AlunoServico {
 
 
     public Aluno salvar(Aluno aluno) {
-
+    	
+    	alunoRepositorio.save(aluno);
+    	
         if(verificarCPF(aluno)){
             throw new RegraNegocioException("CPF já existe");
-        }else {
-        	alunoRepositorio.save(aluno);
         }
 
         return aluno;

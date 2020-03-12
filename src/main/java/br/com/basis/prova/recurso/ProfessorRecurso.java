@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/professores")
@@ -30,9 +33,9 @@ public class ProfessorRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<Professor> salvar(@RequestBody Professor professor) throws URISyntaxException {
+    public ResponseEntity<Professor> salvar(@Valid @RequestBody Professor professor) throws URISyntaxException {
     	Professor result = professorServico.salvar(professor);
-        return ResponseEntity.created(new URI(API_PROFESSORES + result.getId())).body(result);
+        return ResponseEntity.created(new URI(API_PROFESSORES + "/" + result.getId())).body(result);
     }
 
     @PutMapping
