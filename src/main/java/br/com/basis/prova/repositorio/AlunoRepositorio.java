@@ -17,4 +17,7 @@ public interface AlunoRepositorio extends JpaRepository<Aluno, Integer>, JpaSpec
     Optional<Aluno> findByMatricula(String matricula);
 
     List<Aluno> findAllByDisciplinas(Disciplina disciplina);
+    
+    List<Aluno> findByDisciplinas(Disciplina disciplina);
+    
 }

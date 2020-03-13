@@ -18,6 +18,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/alunos")
 public class AlunoRecurso {
@@ -31,7 +33,7 @@ public class AlunoRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<Aluno> salvar(@RequestBody Aluno aluno) throws URISyntaxException {
+    public ResponseEntity<Aluno> salvar(@Valid @RequestBody Aluno aluno) throws URISyntaxException {
     	Aluno result = alunoServico.salvar(aluno);
         return ResponseEntity.created(new URI(API_ALUNOS + result.getId())).body(result);
     }

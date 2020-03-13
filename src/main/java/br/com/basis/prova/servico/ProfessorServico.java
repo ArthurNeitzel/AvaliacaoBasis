@@ -2,6 +2,7 @@ package br.com.basis.prova.servico;
 
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.Professor;
+import br.com.basis.prova.dominio.auxiliar.ProfessorDetalhado;
 import br.com.basis.prova.repositorio.DisciplinaRepositorio;
 import br.com.basis.prova.repositorio.ProfessorRepositorio;
 import br.com.basis.prova.servico.exception.RegistroNaoEncontradoException;
@@ -50,8 +51,18 @@ public class ProfessorServico {
     	
     }
 
-    public Professor detalhar(Integer id) {
-        return new Professor();
+    public Professor consultarId(Integer id) {
+    	
+    	return professorRepositorio.findById(id).orElseThrow(() -> new RegistroNaoEncontradoException("Registro nao encontrado"));
+    	
+    }
+
+    public ProfessorDetalhado detalhar(Integer id) {
+    	ProfessorDetalhado professorD = new ProfessorDetalhado();
+    	professorD.setProfessor(consultarId(id));
+    	professorD.setDisciplinas(disciplinaRepositorio.findByProfessor(professorD.getProfessor()));
+    	
+    	return professorD;
     }
 
 }

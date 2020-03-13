@@ -2,6 +2,7 @@ package br.com.basis.prova.servico;
 
 import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.repositorio.AlunoRepositorio;
+import br.com.basis.prova.servico.exception.RegistroNaoEncontradoException;
 import br.com.basis.prova.servico.exception.RegraNegocioException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,11 @@ public class AlunoServico {
 
     public Aluno salvar(Aluno aluno) {
     	
-    	alunoRepositorio.save(aluno);
-    	
         if(verificarCPF(aluno)){
             throw new RegraNegocioException("CPF já existe");
         }
+        
+        alunoRepositorio.save(aluno);
 
         return aluno;
     }
@@ -36,15 +37,26 @@ public class AlunoServico {
     }
 
     public void excluir(String matricula) {
+    	Aluno deletar = consultarMatricula(matricula);
+    	
+    	if(!deletar.getDisciplinas().isEmpty()) {
+    		throw new RegraNegocioException("Aluno esta matriculado em disciplinas");
+    	}
+    	
+    	alunoRepositorio.delete(deletar);
     }
 
     public List<Aluno> consultar() {
-        return new ArrayList<>();
+        return alunoRepositorio.findAll();
     }
 
     public Aluno detalhar(Integer id) {
         Aluno aluno = alunoRepositorio.findById(id).orElseThrow(() -> new RegraNegocioException("Registro não encontrado"));
-        return new Aluno();
+        return aluno;
+    }
+    
+    public Aluno consultarMatricula(String matricula) {
+    	return alunoRepositorio.findByMatricula(matricula).orElseThrow(() -> new RegistroNaoEncontradoException("Aluno nao encontrado"));
     }
 
 }

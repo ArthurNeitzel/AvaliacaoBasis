@@ -2,6 +2,7 @@ package br.com.basis.prova.recurso;
 
 
 import br.com.basis.prova.dominio.Professor;
+import br.com.basis.prova.dominio.auxiliar.ProfessorDetalhado;
 import br.com.basis.prova.servico.ProfessorServico;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,7 +57,7 @@ public class ProfessorRecurso {
     }
 
     @GetMapping("/detalhes/{id}")
-    public ResponseEntity<Professor> detalhar(@PathVariable("id") Integer id) {
+    public ResponseEntity<ProfessorDetalhado> detalhar(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(professorServico.detalhar(id));
     }
 

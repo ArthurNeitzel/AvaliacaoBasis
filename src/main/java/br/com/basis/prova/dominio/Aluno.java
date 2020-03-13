@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +19,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Entity
@@ -95,18 +101,22 @@ public class Aluno {
 		return matricula;
 	}
 
+	
 	public String getCpf() {
 		return cpf;
 	}
 
+	@JsonIgnore
 	public String getNome() {
 		return nome;
 	}
 
+	@JsonIgnore
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -131,5 +141,6 @@ public class Aluno {
 			return false;
 		return true;
 	}
+
 }
 

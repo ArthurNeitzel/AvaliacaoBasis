@@ -12,9 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/disciplinas")
@@ -29,7 +34,7 @@ public class DisciplinaRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<Disciplina> salvar(@RequestBody Disciplina disciplina) throws URISyntaxException {
+    public ResponseEntity<Disciplina> salvar(@Valid @RequestBody Disciplina disciplina) throws URISyntaxException {
     	Disciplina result = disciplinaServico.salvar(disciplina);
         return ResponseEntity.created(new URI(API_DISCIPLINAS + result.getId())).body(result);
     }
