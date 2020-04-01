@@ -1,6 +1,10 @@
 package br.com.basis.prova.servico;
 
 import br.com.basis.prova.dominio.Aluno;
+import br.com.basis.prova.dominio.conversor.ConversorAluno;
+import br.com.basis.prova.dominio.dto.AlunoDTO;
+import br.com.basis.prova.dominio.dto.AlunoDetalhadoDTO;
+import br.com.basis.prova.dominio.dto.AlunoListagemDTO;
 import br.com.basis.prova.repositorio.AlunoRepositorio;
 import br.com.basis.prova.servico.exception.RegistroNaoEncontradoException;
 import br.com.basis.prova.servico.exception.RegraNegocioException;
@@ -18,15 +22,17 @@ public class AlunoServico {
 	
 	@Autowired
     private AlunoRepositorio alunoRepositorio;
+	
+	private ConversorAluno conversoraluno = new ConversorAluno();
 
 
-    public Aluno salvar(Aluno aluno) {
+    public AlunoDTO salvar(AlunoDTO aluno) {
     	
-        if(verificarCPF(aluno)){
+        if(verificarCPF(conversoraluno.toAluno(aluno))){
             throw new RegraNegocioException("CPF já existe");
         }
         
-        alunoRepositorio.save(aluno);
+        alunoRepositorio.save(conversoraluno.toAluno(aluno));
 
         return aluno;
     }
@@ -46,12 +52,12 @@ public class AlunoServico {
     	alunoRepositorio.delete(deletar);
     }
 
-    public List<Aluno> consultar() {
-        return alunoRepositorio.findAll();
+    public List<AlunoListagemDTO> consultar() {
+        return conversoraluno.toAlunoListagemDTOList(alunoRepositorio.findAll());
     }
 
-    public Aluno detalhar(Integer id) {
-        Aluno aluno = alunoRepositorio.findById(id).orElseThrow(() -> new RegraNegocioException("Registro não encontrado"));
+    public AlunoDetalhadoDTO detalhar(Integer id) {
+        AlunoDetalhadoDTO aluno = conversoraluno.toAlunoDetalhadoDTO(alunoRepositorio.findById(id).orElseThrow(() -> new RegraNegocioException("Registro não encontrado")));
         return aluno;
     }
     

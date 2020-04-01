@@ -3,6 +3,10 @@ package br.com.basis.prova.servico;
 import br.com.basis.prova.dominio.Aluno;
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.Professor;
+import br.com.basis.prova.dominio.conversor.ConversorDisciplina;
+import br.com.basis.prova.dominio.dto.DisciplinaDTO;
+import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
+import br.com.basis.prova.dominio.dto.DisciplinaListagemDTO;
 import br.com.basis.prova.repositorio.AlunoRepositorio;
 import br.com.basis.prova.repositorio.DisciplinaRepositorio;
 import br.com.basis.prova.repositorio.ProfessorRepositorio;
@@ -31,11 +35,13 @@ public class DisciplinaServico {
     
     @Autowired
     private AlunoRepositorio alunoRepositorio;
+    
+    private ConversorDisciplina conversorDisciplina = new ConversorDisciplina();
 
 
-    public Disciplina salvar(Disciplina disciplina) {
+    public DisciplinaDTO salvar(DisciplinaDTO disciplina) {
     	professorRepositorio.findById(disciplina.getProfessor().getId()).orElseThrow(() -> new RegistroNaoEncontradoException("Professor não encontrado"));
-        disciplinaRepositorio.save(disciplina);
+        disciplinaRepositorio.save(conversorDisciplina.toDisciplina(disciplina));
         return disciplina;
     }
 
@@ -55,12 +61,13 @@ public class DisciplinaServico {
     	
     }
     
-    public List<Disciplina> consultar() {
-        return disciplinaRepositorio.findAll();
+    public List<DisciplinaListagemDTO> consultar() {
+        return conversorDisciplina.toDisciplinaDTOList(disciplinaRepositorio.findAll());
     }
 
-    public Disciplina detalhar(Integer id) {
-        return new Disciplina();
+    public DisciplinaDetalhadaDTO detalhar(Integer id) {
+    	DisciplinaDetalhadaDTO busca = conversorDisciplina.toDisciplinaDetalhadaDTO(this.consultarId(id));
+    	return busca;
     }
 
 }

@@ -2,7 +2,8 @@ package br.com.basis.prova.recurso;
 
 
 import br.com.basis.prova.dominio.Professor;
-import br.com.basis.prova.dominio.auxiliar.ProfessorDetalhado;
+import br.com.basis.prova.dominio.dto.ProfessorDTO;
+import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
 import br.com.basis.prova.servico.ProfessorServico;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,14 +35,14 @@ public class ProfessorRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<Professor> salvar(@Valid @RequestBody Professor professor) throws URISyntaxException {
-    	Professor result = professorServico.salvar(professor);
+    public ResponseEntity<ProfessorDTO> salvar(@Valid @RequestBody ProfessorDTO professorDTO) throws URISyntaxException {
+    	ProfessorDTO result = professorServico.salvar(professorDTO);
         return ResponseEntity.created(new URI(API_PROFESSORES + "/" + result.getId())).body(result);
     }
 
     @PutMapping
-    public ResponseEntity<Professor> editar(@RequestBody Professor professor) throws URISyntaxException {
-    	Professor result = professorServico.salvar(professor);
+    public ResponseEntity<ProfessorDTO> editar(@RequestBody ProfessorDTO professor) throws URISyntaxException {
+    	ProfessorDTO result = professorServico.salvar(professor);
         return ResponseEntity.ok(result);
     }
 
@@ -52,12 +53,12 @@ public class ProfessorRecurso {
     }
 
     @GetMapping
-    public ResponseEntity<List<Professor>> consultar() {
+    public ResponseEntity<List<ProfessorDTO>> consultar() {
         return ResponseEntity.ok(professorServico.consultar());
     }
 
     @GetMapping("/detalhes/{id}")
-    public ResponseEntity<ProfessorDetalhado> detalhar(@PathVariable("id") Integer id) {
+    public ResponseEntity<ProfessorDetalhadoDTO> detalhar(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(professorServico.detalhar(id));
     }
 

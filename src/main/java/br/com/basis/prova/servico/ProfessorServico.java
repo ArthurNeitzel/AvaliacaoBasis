@@ -2,7 +2,9 @@ package br.com.basis.prova.servico;
 
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.Professor;
-import br.com.basis.prova.dominio.auxiliar.ProfessorDetalhado;
+import br.com.basis.prova.dominio.conversor.ConversorProfessor;
+import br.com.basis.prova.dominio.dto.ProfessorDTO;
+import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
 import br.com.basis.prova.repositorio.DisciplinaRepositorio;
 import br.com.basis.prova.repositorio.ProfessorRepositorio;
 import br.com.basis.prova.servico.exception.RegistroNaoEncontradoException;
@@ -22,13 +24,16 @@ public class ProfessorServico {
 	
 	@Autowired
     private ProfessorRepositorio professorRepositorio;
+	
+	
+	private ConversorProfessor conversorProfessor = new ConversorProfessor();
 
     @Autowired
     private DisciplinaRepositorio disciplinaRepositorio;
 
-    public Professor salvar(Professor professor) {
-        professorRepositorio.save(professor);
-        return professor;
+    public ProfessorDTO salvar(ProfessorDTO professorDTO) {
+        professorRepositorio.save(conversorProfessor.toProfessor(professorDTO));
+        return professorDTO;
     }
 
     public void excluir(String matricula) {
@@ -40,8 +45,8 @@ public class ProfessorServico {
         professorRepositorio.delete(professor);
     }
 
-    public List<Professor> consultar() {
-        return professorRepositorio.findAll();
+    public List<ProfessorDTO> consultar() {
+        return conversorProfessor.toProfessorDtoList(professorRepositorio.findAll());
     }
     
     
@@ -57,10 +62,10 @@ public class ProfessorServico {
     	
     }
 
-    public ProfessorDetalhado detalhar(Integer id) {
-    	ProfessorDetalhado professorD = new ProfessorDetalhado();
-    	professorD.setProfessor(consultarId(id));
-    	professorD.setDisciplinas(disciplinaRepositorio.findByProfessor(professorD.getProfessor()));
+    public ProfessorDetalhadoDTO detalhar(Integer id) {
+    	Professor search = consultarId(id);
+    	ProfessorDetalhadoDTO professorD = conversorProfessor.toProfessorDetalhadoDto(search);
+    	professorD.setDisciplinas(disciplinaRepositorio.findByProfessor(search));
     	
     	return professorD;
     }
