@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="containerProprio">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <a href="javascript:;" class="navbar-bars" (click)="exibindoMenu = !exibindoMenu">
+          <i class="pi pi-bars"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <ul class="navbar-menu" [hidden]="!exibindoMenu">
+    <li class="navbar-title">
+      <a href="javascript:;" class="navbar-bars" (click)="exibindoMenu = !exibindoMenu">
+        <i class="pi pi-bars"></i>
+        Menu
+      </a>
+    </li>
+    <li class="navbar-item"><a href="#">Alunos</a></li>
+    <li class="navbar-item"><a href="#">Disciplinas</a></li>
+    <li class="navbar-item"><a href="#">Professores</a></li>
+    <li class="navbar-item"><a href="#">Avaliacoes</a></li>
+  </ul>
+  
+</nav>
+
+
+

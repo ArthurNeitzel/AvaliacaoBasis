@@ -1,0 +1,44 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <h1>Professores</h1>
+  </div>
+  <div class="ui-g-12">
+    <label style="display: block">ID</label>
+    <input type="text" size="10" pInputText> 
+  </div>
+  <div class="ui-g-12">
+    <button pButton type="submit" label="Pesquisar"></button>
+  </div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12">
+    <p-table [value]="professores" [paginator]="true" [rows]="5" [responsive]="true">
+      <ng-template pTemplate="header">
+          <tr>
+              <th class="col-id">ID</th>
+              <th>Nome</th>
+              <th width="150px">Matricula</th>
+              <th width="150px">Area</th>
+              <th width="120px">Data de Nascimento</th>
+              <th class="col-acoes">Acoes</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-prof>
+        <tr>
+            <td class="col-id">{{prof.id}}</td>
+            <td>{{prof.nome}}</td>
+            <td>{{prof.matricula}}</td>
+            <td>{{prof.area}}</td>
+            <td>{{prof.dataNascimento}}</td>
+            <td class="col-acoes">
+              <button pButton type="button" class="ui-button-icon-primary" icon="pi pi-eye" pTooltip="Detalhes" tooltipPosition="top"></button>
+              <button pButton type="button" class="ui-button-icon-primary" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+            </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="ui-g-12">
+    <button pButton type="button" label="Novo Professor"></button>
+  </div>
+</div>

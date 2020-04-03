@@ -1,0 +1,10 @@
+<div class="alert alert-success" role="alert" *ngIf="adicionado">
+  Nome cadastrado: {{nome}}
+</div>
+
+<div class="form-group">
+  <label>Email address</label>
+  <input type="nome" class="form-control" [(ngModel)]="nome" (focus) = "adicionado = false">
+</div>
+
+<button type="button" class="btn btn-primary" (click)="adicionar()">Adcionar</button>

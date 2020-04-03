@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'primeicons/primeicons.css';
+@import 'primeng/resources/themes/nova-light/theme.css';
+@import 'primeng/resources/primeng.min.css';
+@import 'primeflex/primeflex.css';
+
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #404C51;
+}
+
+@media (min-width: 1200px){
+    .containerProprio {
+        width: 1170px;
+        margin: 0 auto;
+    }
+}
+
+.col-id {
+    width: 70px;
+    text-align: center;
+}
+
+.col-data{
+    width: 120px;
+    text-align: center;
+}
+
+.col-acoes{
+    width:100px;
+    text-align: center;
+}
+

@@ -2,6 +2,7 @@ package br.com.basis.prova.servico;
 
 import br.com.basis.prova.dominio.Disciplina;
 import br.com.basis.prova.dominio.Professor;
+import br.com.basis.prova.dominio.conversor.ConversorDisciplina;
 import br.com.basis.prova.dominio.conversor.ConversorProfessor;
 import br.com.basis.prova.dominio.dto.ProfessorDTO;
 import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
@@ -27,6 +28,7 @@ public class ProfessorServico {
 	
 	
 	private ConversorProfessor conversorProfessor = new ConversorProfessor();
+	private ConversorDisciplina conversorDisciplina = new ConversorDisciplina();
 
     @Autowired
     private DisciplinaRepositorio disciplinaRepositorio;
@@ -65,7 +67,7 @@ public class ProfessorServico {
     public ProfessorDetalhadoDTO detalhar(Integer id) {
     	Professor search = consultarId(id);
     	ProfessorDetalhadoDTO professorD = conversorProfessor.toProfessorDetalhadoDto(search);
-    	professorD.setDisciplinas(disciplinaRepositorio.findByProfessor(search));
+    	professorD.setDisciplinas(conversorDisciplina.toDisciplinaDTOList(disciplinaRepositorio.findByProfessor(search)));
     	
     	return professorD;
     }
