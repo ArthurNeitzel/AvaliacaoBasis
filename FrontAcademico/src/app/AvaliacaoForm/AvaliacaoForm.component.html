@@ -1,0 +1,31 @@
+<div class="container">
+  <form #avaliacaoForm="ngForm">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1 class="label-title">Nova Avaliacao</h1>
+      </div>
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">Aluno</label>
+        <p-dropdown [options]="alunos" [(ngModel)]="alunoSelecionado" optionLabel="nome" name="aluno"></p-dropdown>
+      </div>
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">Disciplina</label>
+        <p-dropdown [options]="disciplinas" [(ngModel)]="discSelecionada" optionLabel="nome" name="disciplina"></p-dropdown>
+      </div>        
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-fluid ui-g-12">
+        <label class="label-form">Nota</label>
+      </div>
+      <div class="ui-fluid ui-g-8">
+        <input pInputText type="text" name="descricao" ngModel>
+      </div>
+    </div>
+
+    <div class="ui-g ui-g-3">
+      <p-button label="Salvar"></p-button>
+      <p-button label="Cancelar" routerLink="/avaliacoes"></p-button>
+    </div>
+  </form>
+</div>

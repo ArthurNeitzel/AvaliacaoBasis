@@ -29,7 +29,18 @@ body {
 }
 
 .col-acoes{
-    width:100px;
+    width:150px;
     text-align: center;
+}
+
+.label-form{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    color: #404C51;
+}
+
+.label-title{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #404C51; 
 }
 

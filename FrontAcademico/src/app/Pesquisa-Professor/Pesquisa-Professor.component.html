@@ -31,14 +31,14 @@
             <td>{{prof.area}}</td>
             <td>{{prof.dataNascimento}}</td>
             <td class="col-acoes">
-              <button pButton type="button" class="ui-button-icon-primary" icon="pi pi-eye" pTooltip="Detalhes" tooltipPosition="top"></button>
-              <button pButton type="button" class="ui-button-icon-primary" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+              <button pButton type="button" class="ui-button-icon-primary" icon="pi pi-eye" pTooltip="Detalhes" tooltipPosition="top" routerLink="/detalhar"></button>
+              <button pButton type="button" class="ui-button-icon-primary" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(prof.matricula)"></button>
             </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
   <div class="ui-g-12">
-    <button pButton type="button" label="Novo Professor"></button>
+    <button pButton type="button" label="Novo Professor" routerLink="/professores/novo"></button>
   </div>
 </div>

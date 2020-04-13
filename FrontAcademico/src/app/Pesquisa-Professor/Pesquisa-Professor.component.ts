@@ -1,3 +1,4 @@
+import { ProfessorService } from './../professor.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,12 +6,29 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './Pesquisa-Professor.component.html',
   styleUrls: ['./Pesquisa-Professor.component.css']
 })
-export class PesquisaProfessorComponent{
+export class PesquisaProfessorComponent implements OnInit{
 
-  professores = [
-    {id: 1,nome: 'Arthur',matricula: 20171,area: 'TI',dataNascimento: '01/01/2000'},
-    {id: 2,nome: 'Joao',matricula: 20171,area: 'TI',dataNascimento: '01/01/2000'},
-    {id: 3,nome: 'Jose',matricula: 20171,area: 'TI',dataNascimento: '01/01/2000'}
-  ]
+  constructor(private professorService: ProfessorService) {}
+  professores = [];
+
+  ngOnInit() {
+    this.consultar();
+  }
+  consultar(){
+    this.professorService.consultar()
+      .then(retorno => {
+        this.professores = retorno;
+      })
+  }
+  excluir(matricula: number){
+    this.professorService.excluir(matricula).then(
+      () => {
+        alert('Professor excluido.');
+        this.consultar();
+      }
+    );
+  }
+
+  
 
 }

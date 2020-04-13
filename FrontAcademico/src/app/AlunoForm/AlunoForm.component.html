@@ -1,0 +1,42 @@
+<div class="container">
+  <form #alunoForm="ngForm">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1 class="label-title">Novo Aluno</h1>
+      </div>
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">Nome</label>
+        <input pInputText type="text" name="nome" ngModel>
+      </div>
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">Data de nascimento</label>
+        <p-calendar [(ngModel)]="dataNascimento" dateFormat="yyyy-mm-dd" name="dataNascimento"></p-calendar>
+      </div>
+
+      
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">CPF</label>
+        <p-inputMask  mask="999.999.999-99" name="cpf"></p-inputMask>
+      </div>
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">Matricula</label>
+        <input pInputText type="text" name="matricula" ngModel>
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-fluid ui-g-8">
+        <label class="label-form">Disciplinas</label>
+        <p-multiSelect [options]="disciplinas" [(ngModel)]="discSelecionadas" optionLabel="nome" name= "disciplinas"></p-multiSelect>
+      </div>
+    </div>
+
+    <div class="ui-g ui-g-3">
+      <p-button label="Salvar"></p-button>
+      <p-button label="Cancelar" routerLink="/alunos"></p-button>
+    </div>
+  </form>
+</div>

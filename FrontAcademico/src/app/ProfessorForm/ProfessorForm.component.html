@@ -1,10 +1,37 @@
-<div class="alert alert-success" role="alert" *ngIf="adicionado">
-  Nome cadastrado: {{nome}}
-</div>
+<div class="container">
+  <form #professorForm="ngForm" (ngSubmit)="salvar(professorForm)">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1 class="label-title">Novo Professor</h1>
+      </div>
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">Nome</label>
+        <input pInputText type="text" name="nome" [(ngModel)]="professor.nome">
+      </div>
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">Data de nascimento</label>
+        <!-- <input pInputText type="date" class="form-control" name="dataNascimento" ngModel> -->
+        <p-calendar [(ngModel)]="professor.dataNascimento" dateFormat="yy-mm-dd" [readonlyInput]="true" name="dataNascimento"></p-calendar>
+      </div>
 
-<div class="form-group">
-  <label>Email address</label>
-  <input type="nome" class="form-control" [(ngModel)]="nome" (focus) = "adicionado = false">
-</div>
+      
+    </div>
 
-<button type="button" class="btn btn-primary" (click)="adicionar()">Adcionar</button>
+    <div class="ui-g">
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">Matricula</label>
+        <input pInputText type="number" name="professor.matricula" [(ngModel)]="professor.matricula">
+      </div>
+
+      <div class="ui-fluid ui-g-4">
+        <label class="label-form">Area de Atuacao</label>
+        <input pInputText type="text" name="professor.area" [(ngModel)]="professor.area">
+      </div>
+    </div>
+
+    <div class="ui-g ui-g-3">
+      <p-button label="Salvar" type="submit"></p-button>
+      <p-button label="Cancelar" routerLink="/professores"></p-button>
+    </div>
+  </form>
+</div>

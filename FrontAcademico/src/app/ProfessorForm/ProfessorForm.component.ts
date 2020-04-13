@@ -1,4 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { NgForm, FormControl } from '@angular/forms'
+import { ProfessorService } from './../professor.service';
+import { Professor } from '../Model/Professor';
 
 
 @Component({
@@ -8,20 +11,22 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class ProfessorFormComponent {
 
-  nome = 'Test';
-  adicionado = false;
-  @Output() funcionarioAdicionado = new EventEmitter();
-  ultimoId = 0;
+  constructor(private professorService: ProfessorService) {}
 
-  adicionar(){
-    this.adicionado = true;
-    const funcionario = {
-      id : ++this.ultimoId,
-      nome: this.nome
-    };
+  
+  nome: String;
+  matricula: number;
+  area: String;
+  dataNascimento : Date;
+  professor = new Professor();
 
-    this.funcionarioAdicionado.emit(funcionario);
+  salvar(entrada : NgForm){
+    
+    
+    this.professorService.adicionar(this.professor)
+    .then((response : any) => alert(`Professor ${response.nome} criado com codigo: ${response.id}.`));
 
+    entrada.resetForm();
   }
 
 }

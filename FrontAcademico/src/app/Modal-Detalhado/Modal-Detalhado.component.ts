@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-Modal-Detalhado',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalDetalhadoComponent {
 
+  @Input() html_string: String;
   displayModal: boolean = true;
   professor = {id : 1, nome: "Arthur", matricula: 2041, disciplinas: "POO,PROG1,BD"}
   showDialog() {
       this.displayModal = true;
+  }
+
+  voltar(){
+    window.history.back();
   }
 }

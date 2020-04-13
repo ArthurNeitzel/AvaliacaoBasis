@@ -1,3 +1,3 @@
-label{
-    color: red;
+:host ::ng-deep button {
+    margin-right: .5em;
 }
