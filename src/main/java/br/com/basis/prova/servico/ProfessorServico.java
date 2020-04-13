@@ -34,7 +34,8 @@ public class ProfessorServico {
     private DisciplinaRepositorio disciplinaRepositorio;
 
     public ProfessorDTO salvar(ProfessorDTO professorDTO) {
-        professorRepositorio.save(conversorProfessor.toProfessor(professorDTO));
+        Professor inserido = professorRepositorio.save(conversorProfessor.toProfessor(professorDTO));
+        professorDTO.setId(inserido.getId());
         return professorDTO;
     }
 

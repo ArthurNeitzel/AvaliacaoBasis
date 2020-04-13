@@ -6,6 +6,7 @@ import br.com.basis.prova.dominio.dto.DisciplinaDetalhadaDTO;
 import br.com.basis.prova.dominio.dto.DisciplinaListagemDTO;
 import br.com.basis.prova.servico.DisciplinaServico;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin()
 @RequestMapping("/api/disciplinas")
 public class DisciplinaRecurso {
 

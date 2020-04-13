@@ -6,6 +6,7 @@ import br.com.basis.prova.dominio.dto.ProfessorDTO;
 import br.com.basis.prova.dominio.dto.ProfessorDetalhadoDTO;
 import br.com.basis.prova.servico.ProfessorServico;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin()
 @RequestMapping("/api/professores")
 public class ProfessorRecurso {
 
@@ -52,6 +54,8 @@ public class ProfessorRecurso {
         return ResponseEntity.status(200).build();
     }
 
+
+    
     @GetMapping
     public ResponseEntity<List<ProfessorDTO>> consultar() {
         return ResponseEntity.ok(professorServico.consultar());

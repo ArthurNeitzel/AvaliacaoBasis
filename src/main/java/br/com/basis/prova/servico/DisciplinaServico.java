@@ -41,7 +41,8 @@ public class DisciplinaServico {
 
     public DisciplinaDTO salvar(DisciplinaDTO disciplina) {
     	professorRepositorio.findById(disciplina.getProfessor().getId()).orElseThrow(() -> new RegistroNaoEncontradoException("Professor não encontrado"));
-        disciplinaRepositorio.save(conversorDisciplina.toDisciplina(disciplina));
+        Disciplina nova = disciplinaRepositorio.save(conversorDisciplina.toDisciplina(disciplina));
+        disciplina.setId(nova.getId());
         return disciplina;
     }
 

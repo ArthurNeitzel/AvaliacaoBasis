@@ -32,8 +32,8 @@ public class AlunoServico {
             throw new RegraNegocioException("CPF já existe");
         }
         
-        alunoRepositorio.save(conversoraluno.toAluno(aluno));
-
+        Aluno novo = alunoRepositorio.save(conversoraluno.toAluno(aluno));
+        aluno.setId(novo.getId());
         return aluno;
     }
 
