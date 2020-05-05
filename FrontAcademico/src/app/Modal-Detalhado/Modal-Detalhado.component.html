@@ -1,8 +1,8 @@
-<p-dialog header="Detalhes" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false">
-    <p [innerHTML]="html_string">
-    </p>
-    <p-footer>
-        <button type="button" pButton icon="pi pi-times" (click)="displayModal=false;voltar()" label="Fechar"></button>
-    </p-footer>
-</p-dialog>
+<h1>ID</h1>
+{{ professor.id }}
+<h2>Nome</h2>
+{{ professor.nome }}
+<h3>Matricula</h3>
+{{ professor.matricula }}
+<h3>Disciplinas</h3>
+{{ professor.disciplinas }}

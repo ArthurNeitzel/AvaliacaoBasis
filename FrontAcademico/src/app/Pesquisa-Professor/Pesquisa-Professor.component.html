@@ -3,8 +3,8 @@
     <h1>Professores</h1>
   </div>
   <div class="ui-g-12">
-    <label style="display: block">ID</label>
-    <input type="text" size="10" pInputText> 
+    <label style="display: block;">ID</label>
+    <input type="text" size="10" pInputText />
   </div>
   <div class="ui-g-12">
     <button pButton type="submit" label="Pesquisar"></button>
@@ -12,33 +12,59 @@
 </div>
 <div class="ui-g">
   <div class="ui-g-12">
-    <p-table [value]="professores" [paginator]="true" [rows]="5" [responsive]="true">
+    <p-table
+      [value]="professores"
+      [paginator]="true"
+      [rows]="5"
+      [responsive]="true"
+    >
       <ng-template pTemplate="header">
-          <tr>
-              <th class="col-id">ID</th>
-              <th>Nome</th>
-              <th width="150px">Matricula</th>
-              <th width="150px">Area</th>
-              <th width="120px">Data de Nascimento</th>
-              <th class="col-acoes">Acoes</th>
-          </tr>
+        <tr>
+          <th class="col-id">ID</th>
+          <th>Nome</th>
+          <th width="150px">Matricula</th>
+          <th width="150px">Area</th>
+          <th width="120px">Data de Nascimento</th>
+          <th class="col-acoes">Acoes</th>
+        </tr>
       </ng-template>
       <ng-template pTemplate="body" let-prof>
         <tr>
-            <td class="col-id">{{prof.id}}</td>
-            <td>{{prof.nome}}</td>
-            <td>{{prof.matricula}}</td>
-            <td>{{prof.area}}</td>
-            <td>{{prof.dataNascimento}}</td>
-            <td class="col-acoes">
-              <button pButton type="button" class="ui-button-icon-primary" icon="pi pi-eye" pTooltip="Detalhes" tooltipPosition="top" routerLink="/detalhar"></button>
-              <button pButton type="button" class="ui-button-icon-primary" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(prof.matricula)"></button>
-            </td>
+          <td class="col-id">{{ prof.id }}</td>
+          <td>{{ prof.nome }}</td>
+          <td>{{ prof.matricula }}</td>
+          <td>{{ prof.area }}</td>
+          <td>{{ prof.dataNascimento }}</td>
+          <td class="col-acoes">
+            <button
+              pButton
+              type="button"
+              class="ui-button-icon-primary"
+              icon="pi pi-eye"
+              pTooltip="Detalhes"
+              tooltipPosition="top"
+              (click)="mostrar()"
+            ></button>
+            <button
+              pButton
+              type="button"
+              class="ui-button-icon-primary"
+              icon="pi pi-trash"
+              pTooltip="Excluir"
+              tooltipPosition="top"
+              (click)="excluir(prof.matricula)"
+            ></button>
+          </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
   <div class="ui-g-12">
-    <button pButton type="button" label="Novo Professor" routerLink="/professores/novo"></button>
+    <button
+      pButton
+      type="button"
+      label="Novo Professor"
+      routerLink="/professores/novo"
+    ></button>
   </div>
 </div>
